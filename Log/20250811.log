@@ -1,0 +1,2 @@
+[2025-08-11T08:22:52.008617-06:00] amores.ERROR: mensaje: Failed opening required 'Template/Modals/modalAlertas.php' (include_path='C:\xampp82\php\PEAR'), archivo: C:\xampp82\htdocs\amores\Views\Errors\error.php, linea: 82, codigo: 0 [] []
+[2025-08-11T08:22:52.709748-06:00] amores.ERROR: mensaje: UsuariosModel::selectUsuario(): Argument #1 ($usuario_id) must be of type int, null given, called in C:\xampp82\htdocs\amores\Helpers\Helpers.php on line 807, archivo: C:\xampp82\htdocs\amores\Models\UsuariosModel.php, linea: 158, codigo: 0 [] []

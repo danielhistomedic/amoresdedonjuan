@@ -1,0 +1,1 @@
+[2025-01-09T06:29:10.735284-06:00] amores.ERROR: mensaje: Argument 1 passed to UsuariosModel::selectUsuario() must be of the type int, null given, called in C:\xampp\htdocs\amores\Helpers\Helpers.php on line 807, archivo: C:\xampp\htdocs\amores\Models\UsuariosModel.php, linea: 158, codigo: 0 [] []

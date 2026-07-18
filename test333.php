@@ -1,0 +1,65 @@
+{
+"beneficiario_id":null,
+"Curp":"JASA850304HDFMLD08",
+"nombre":"ADRIAN GERARDO",
+"primer_apellido":"JAIMES",
+"segundo_apellido":"SOLIS",
+"fecha_nacimiento":"1985-03-04T00:00:00",
+"sexo":2,
+"estado_nacimiento":10,
+"pais_origen":303,
+"telefono":"5575508859",
+"rfc":null,
+"estado_civil":3,
+"fuente":5,
+"clave_elector":"-",
+"usuario_captura":"EVELING FLORES MARTINEZ",
+"domicilio_reside":
+{"estado":16,
+"muncipio":692,
+"localidad":86991,
+"tipo_asentamiento":8,
+"nombre_asentamiento":"Ciudad Cuauhtémoc Sección Cuitlahuac",
+"codigo_postal":"55067",
+"tipo_vialidad":6,
+"nombre_vialidad":"CRISTINA PACHECO",
+"numero_exterior":"SN",
+"numero_interior":"MZA. C PLAZA 7 LT. 6",
+"descripcion_domicilio":"CRISTINA PACHECO MZA. C PLAZA 7 LT. 6 Ciudad Cuauhtémoc Sección Cuitlahuac ECATEPEC DE MORELOS México 55067",
+"entre_vialidades":null,
+"vialidad_posterior":null,
+"ciudad_origen":null},
+"expediente_socioeconomico":
+{"nivel_estudios":6,
+"tipo_vulnerabilidad_social":2,
+"tipo_vulnerabilidad_familiar":5,
+"tipo_asentamiento":8,
+"parentesco_jefe_familia":23,
+"es_jefe_familia":true,
+"parentesco_solicitante":23,
+"condicion_etnica":3,
+"familia_indigena":false,
+"casa_cuenta_con":2,
+"ocupacion":"AYUDANTE GENERAL",
+"facebook":null,
+"instagram":null,
+"twiter":null,
+"otra_red_social":null,
+"comunidad_indigena":"no",
+"afro":"no",
+"llega_al_estado":"no",
+"origen":true,
+"estado_origen":0,
+"pais_origen":0,
+"violencia":"no",
+"tipo_violencia":0},
+"datos_publicos":
+{"acepta":0,
+"nombre_autoriza":null}
+}
+
+
+
+{"beneficiario_id":"2146335","edad":60,"recibo_sifap":"D119","folio_externo":0,"folio_interno":"33989","fecha_entrega":"2022-01-11T00:00:00","proyecto":33,"importe":152.99,"descripcion":"Rayos X Placa 11x14, 14x14 y 14x17","servicio_otorgado":122,"otorgante":1493,"observaciones":null,"solicitante":{"nombre":"EMILIANA","apellido_paterno":"GARCIA","apellido_materno":"BARTOLO","curp":"GABE621018MMCRRM02"}}
+{"beneficiario_id":"1195533","edad":72,"recibo_sifap":"D115","folio_externo":0,"folio_interno":"31209","fecha_entrega":"2022-01-11T00:00:00","proyecto":33,"importe":140.48,"descripcion":"Rayos X Placa 11x14, 14x14 y 14x17","servicio_otorgado":122,"otorgante":1493,"observaciones":null,"solicitante":{"nombre":"SOFIA","apellido_paterno":"CASTILLO","apellido_materno":"CARBAJAL","curp":"CACS490909MHGSRF19"}}
+{"beneficiario_id":"2031613","edad":8,"recibo_sifap":"D127","folio_externo":0,"folio_interno":"34113","fecha_entrega":"2022-01-11T00:00:00","proyecto":33,"importe":140.48,"descripcion":"Rayos X Placa 8X10 y 10x12","servicio_otorgado":122,"otorgante":1493,"observaciones":null,"solicitante":{"nombre":"MARIEL","apellido_paterno":"BADILLO","apellido_materno":"ECHEVERRIA","curp":"BAEM130731MMCDCRA0"}}
