@@ -12,24 +12,18 @@ $_host = $_SERVER['HTTP_HOST'] ?? $_SERVER['SERVER_NAME'] ?? '';
 // Normalizar: quitar puerto si lo hay (ej. localhost:8080)
 $_hostClean = explode(':', $_host)[0];
 
-$isLocalhost = in_array($_hostClean, ['localhost', '127.0.0.1']);
-$isProduccion = !$isLocalhost && strpos($_hostClean, 'amoresdedonjuan.org') !== false;
+$isProduccion = (strpos($_hostClean, 'amoresdedonjuan.org') !== false);
 
-// Protocolo real del request
-$_scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
-// URL base dinámica = protocolo + host exacto que usó el navegador
-$_baseUrlDynamic = $_scheme . '://' . $_host;
-
-if ($isLocalhost) {
+if (!$isProduccion) {
     // -------------------------------------------------------
-    // Entorno: DESARROLLO (Local)
+    // Entorno: DESARROLLO (Local / Sandbox)
     // -------------------------------------------------------
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
-    define('BASE_HOSTING', 'http://localhost');
-    define('BASE_URL', 'http://localhost/amores_sandbox');
+    define('BASE_HOSTING', $_scheme . '://' . $_host);
+    define('BASE_URL', $_scheme . '://' . $_host . '/amores_sandbox');
 
     define('DB_HOST', 'histoclin.mx');
     define('DB_NAME', 'histocli_amores');
@@ -106,6 +100,3 @@ const METHODENCRIPT = "AES-128-ECB";
 //==================================================================
 // [ Ingresos y Egresos - Saldo Inicial Administración Anterior ]
 const SALDO_INICIAL_CUENTA = 17004.75;
-
-//==================================================================
-// [ STRIPE ]

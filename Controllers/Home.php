@@ -23,7 +23,7 @@ class Home extends Controllers
         $this->session = new Session();
 
         if ($this->session->getStatus() === false || empty($this->session->get('email'))) {
-            $this->session->redirect('inicio');
+            $this->session->redirect('login');
         }
     }
 

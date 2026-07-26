@@ -23,7 +23,15 @@ class Session
     public function init()
     {
         if (session_status() === PHP_SESSION_NONE) {
-            session_set_cookie_params(60 * 60 * 12);
+            if (PHP_VERSION_ID >= 70300) {
+                session_set_cookie_params([
+                    'lifetime' => 60 * 60 * 12,
+                    'path' => '/',
+                    'httponly' => true
+                ]);
+            } else {
+                session_set_cookie_params(60 * 60 * 12, '/');
+            }
             @session_start();
         }
     }

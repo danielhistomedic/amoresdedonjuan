@@ -11,7 +11,6 @@
         "classmap": ["Libraries/Custom/"]
     },
     "require": {
-        "monolog/monolog": "^2.2",
-        "stripe/stripe-php": "^7.103"
+        "monolog/monolog": "^2.2"
     }
 }

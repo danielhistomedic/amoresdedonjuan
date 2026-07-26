@@ -1,7 +1,5 @@
 <?php
 
-// use Stripe\Terminal\Location;
-
 /**
  * Controlador Login 
  */
@@ -23,9 +21,6 @@ class Login extends Controllers
         /*-------------------------------------------
         // [ Validación de Sesion ]*/
         $this->session = new Session;
-        if (isset($_SESSION[PREFIJO_SESSION  . 'email'])) {
-            header('Location: ' . base_url() . '/inicio');
-        }
     }
 
     /**
@@ -43,11 +38,8 @@ class Login extends Controllers
 
         try {
 
-            if (session_status() === PHP_SESSION_NONE) {
-                session_start();
-            }
-            if (isset($_SESSION[PREFIJO_SESSION . 'userId'])) {
-                header('location: inicio');
+            if (!empty($this->session->get('email'))) {
+                $this->session->redirect('inicio');
             }
             /*-------------------------------------------
             [ Crea el array $data para enviar a la vista ]*/
