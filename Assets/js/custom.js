@@ -42,9 +42,16 @@
 	})
 	
 	// ______________ PAGE LOADING
-	$(window).on("load", function(e) {
+	if (document.readyState === "complete") {
 		$("#global-loader").fadeOut("slow");
-	})
+	} else {
+		$(window).on("load", function(e) {
+			$("#global-loader").fadeOut("slow");
+		});
+		setTimeout(function() {
+			$("#global-loader").fadeOut("slow");
+		}, 1000);
+	}
 	
 	// ______________ BACK TO TOP BUTTON
 	$(window).on("scroll", function(e) {

@@ -12,34 +12,46 @@ $_host = $_SERVER['HTTP_HOST'] ?? $_SERVER['SERVER_NAME'] ?? '';
 // Normalizar: quitar puerto si lo hay (ej. localhost:8080)
 $_hostClean = explode(':', $_host)[0];
 
-$isProduccion = (strpos($_hostClean, 'amoresdedonjuan.org') !== false);
+$isLocalhost = in_array($_hostClean, ['localhost', '127.0.0.1']);
+$isProduccion = !$isLocalhost;
 
-if (!$isProduccion) {
+// Protocolo real del request
+$_scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+// URL base dinámica = protocolo + host exacto que usó el navegador
+$_baseUrlDynamic = $_scheme . '://' . $_host;
+
+if ($isLocalhost) {
     // -------------------------------------------------------
-    // Entorno: DESARROLLO (Local / Sandbox)
+    // Entorno: DESARROLLO (Local)
     // -------------------------------------------------------
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
-    define('BASE_HOSTING', $_scheme . '://' . $_host);
-    define('BASE_URL', $_scheme . '://' . $_host . '/amores_sandbox');
-
+    define('BASE_HOSTING', 'https://amoresdedonjuan.org');
+    define('BASE_URL', 'http://localhost/amores_sandbox');
     define('DB_HOST', 'histoclin.mx');
     define('DB_NAME', 'histocli_amores');
     define('DB_USER', 'histocli_amores');
     define('DB_PASSWORD', 'k-%sh9SJbsvT');
+    define('DB_PORT', '3306');
+    define('ENVIRONMENT', 'development');
 } else {
     // -------------------------------------------------------
     // Entorno: PRODUCCIÓN — amoresdedonjuan.org
     // -------------------------------------------------------
-    define('BASE_HOSTING', 'https://amoresdedonjuan.org');
-    define('BASE_URL', 'https://amoresdedonjuan.org');
+    ini_set('display_errors', 0);
+    ini_set('display_startup_errors', 0);
+    error_reporting(0);
 
+    define('BASE_HOSTING', 'https://amoresdedonjuan.org');
+    define('BASE_URL', $_baseUrlDynamic);
     define('DB_HOST', 'localhost');
     define('DB_NAME', 'histocli_amores');
     define('DB_USER', 'histocli_amores');
     define('DB_PASSWORD', 'k-%sh9SJbsvT');
+    define('DB_PORT', '3306');
+    define('ENVIRONMENT', 'production');
 }
 
 const DB_CHARSET = "charset=utf8";
@@ -90,7 +102,7 @@ const EMAIL_EMPRESA = "administracion@amoresdedonjuan.org";
 //==================================================================
 // [ Otras Constantes ]
 // PREFIJO_SESSION es diferente por entorno para evitar conflictos de cookies entre local y prod.
-define('PREFIJO_SESSION', $isLocalhost ? 'amor_local_02022419_' : 'amor_02022419_');
+define('PREFIJO_SESSION', !$isProduccion ? 'amor_local_02022419_' : 'amor_02022419_');
 
 //==================================================================
 // [ ssl ]
