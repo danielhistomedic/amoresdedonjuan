@@ -1,0 +1,1 @@
+[2026-07-25T20:41:03.556621-06:00] amores.ERROR: mensaje: SQLSTATE[HY000] [2002] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión, archivo: C:\xampp\htdocs\amores_sandbox\Libraries\Core\Conexion.php, linea: 20, codigo: 2002 [] []

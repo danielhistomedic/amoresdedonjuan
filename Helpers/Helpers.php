@@ -43,18 +43,27 @@ function base_url()
  */
 function base_url_assets()
 {
-    return BASE_URL . "/Assets";
+    return media();
 }
 
 /**
  * Función que devuelve la Url base de archivos css, js y pluggins del proyecto.
+ * Detecta automáticamente si la carpeta en el servidor es Assets o assets.
  * 
- * @return string BASE_URL . "/Assets"
- * 
+ * @return string
  */
 function media()
 {
-    return BASE_URL . "/Assets";
+    static $assetsDirName = null;
+    if ($assetsDirName === null) {
+        $assetsDirName = 'Assets';
+        if (defined('DIR')) {
+            if (is_dir(DIR . '/assets') && !is_dir(DIR . '/Assets')) {
+                $assetsDirName = 'assets';
+            }
+        }
+    }
+    return BASE_URL . "/" . $assetsDirName;
 }
 
 //==================================================================

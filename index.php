@@ -2,11 +2,12 @@
 
 //******************************** */
 // [ Versión del Sistema ]
-const VERSION_SYS = "1.4.148";
+const VERSION_SYS = "1.4.150";
 const DIR = __DIR__;
 
 //******************************** */
 // [ Desplegar Errores PHP en el navegador ]
+error_reporting(0);
 
 //******************************** */
 // [ Se cargan las constantes y otras funciones del proyecto. ]
@@ -16,16 +17,16 @@ require_once('Helpers/Helpers.php');
 require_once('Helpers/LogErrors.php');
 include_once 'Libraries/Core/Session.php';
 
-//******************************** */
-// [ Desplegar Errores PHP en el navegador según el Entorno ]
-if (defined('ENVIRONMENT') && ENVIRONMENT === 'development') {
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
-} else {
-    // Desactivar toda las notificaciónes del PHP en producción
-    error_reporting(0);
-}
+// //******************************** */
+// // [ Desplegar Errores PHP en el navegador según el Entorno ]
+// if (defined('ENVIRONMENT') && ENVIRONMENT === 'development') {
+//     ini_set('display_errors', 1);
+//     ini_set('display_startup_errors', 1);
+//     error_reporting(E_ALL);
+// } else {
+//     // Desactivar toda las notificaciónes del PHP en producción
+//     error_reporting(0);
+// }
 
 //******************************** */
 // [ Se obtienen las variables de las url desde el .htacces ]
