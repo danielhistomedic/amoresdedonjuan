@@ -1,65 +1,56 @@
 <?php
 
-//******************************** */
-// [ Versión del Sistema ]
+/**
+ * Punto de Entrada Principal del Sistema (Front Controller)
+ * Fraccionamiento Amores de Don Juan
+ */
+
+//==================================================================
+// [ Versión del Sistema y Directorio Raíz ]
 const VERSION_SYS = "1.4.150";
-const DIR = __DIR__;
+const DIR         = __DIR__;
 
-//******************************** */
-// [ Desplegar Errores PHP en el navegador ]
-error_reporting(0);
+//==================================================================
+// [ Carga de Archivos de Configuración y Helpers ]
+require_once DIR . '/Config/Config.php';
+require_once DIR . '/Config/Modulos.php';
+require_once DIR . '/Helpers/Helpers.php';
+require_once DIR . '/Helpers/LogErrors.php';
+include_once DIR . '/Libraries/Core/Session.php';
 
-//******************************** */
-// [ Se cargan las constantes y otras funciones del proyecto. ]
-require_once('Config/Config.php');
-require_once('Config/Modulos.php');
-require_once('Helpers/Helpers.php');
-require_once('Helpers/LogErrors.php');
-include_once 'Libraries/Core/Session.php';
+//==================================================================
+// [ Configuración de Reporte de Errores según el Entorno ]
+if (defined('ENVIRONMENT') && ENVIRONMENT === 'development') {
+    ini_set('display_errors', '1');
+    ini_set('display_startup_errors', '1');
+    error_reporting(E_ALL);
+} else {
+    ini_set('display_errors', '0');
+    error_reporting(0);
+}
 
-// //******************************** */
-// // [ Desplegar Errores PHP en el navegador según el Entorno ]
-// if (defined('ENVIRONMENT') && ENVIRONMENT === 'development') {
-//     ini_set('display_errors', 1);
-//     ini_set('display_startup_errors', 1);
-//     error_reporting(E_ALL);
-// } else {
-//     // Desactivar toda las notificaciónes del PHP en producción
-//     error_reporting(0);
-// }
+//==================================================================
+// [ Procesamiento y Sanitización de la URL ]
+$urlInput = filter_input(INPUT_GET, 'url', FILTER_SANITIZE_URL);
+if (empty($urlInput) && isset($_GET['url'])) {
+    $urlInput = filter_var($_GET['url'], FILTER_SANITIZE_URL);
+}
 
-//******************************** */
-// [ Se obtienen las variables de las url desde el .htacces ]
+$url = !empty($urlInput) ? rtrim(trim($urlInput), '/') : 'login';
+if (empty($url)) {
+    $url = 'login';
+}
 
-$url = !empty($_GET['url']) ? $_GET['url'] : 'login';
-
-$arrUrl = explode("/", $url);
+$arrUrl     = explode('/', $url);
 $controller = $arrUrl[0];
-$method = $arrUrl[0];
-$params = "";
+$method     = !empty($arrUrl[1]) ? $arrUrl[1] : $arrUrl[0];
+$params     = count($arrUrl) > 2 ? implode(',', array_slice($arrUrl, 2)) : '';
 
-if (!empty($arrUrl[1])) {
-    if ($arrUrl[1] != "") {
-        $method = $arrUrl[1];
-    }
-}
+//==================================================================
+// [ Autoload de Clases del Núcleo y Modelos ]
+require_once DIR . '/Libraries/Core/Autoload.php';
+require_once DIR . '/Libraries/Core/AutoloadModel.php';
 
-if (!empty($arrUrl[2])) {
-    if ($arrUrl[2] != "") {
-        for ($i = 2; $i < count($arrUrl); $i++) {
-            $params .= $arrUrl[$i] . ',';
-        }
-        $params = trim($params, ',');
-    }
-}
-
-
-//******************************** */
-// [ Se registran las clases obtenidas desde la url. ]
-require_once('Libraries/Core/Autoload.php');
-require_once('Libraries/Core/AutoloadModel.php');
-
-
-//******************************** */
-// [ Se hace la carga inicial de la página obtenida de los controladores. ]
-require_once('Libraries/Core/Load.php');
+//==================================================================
+// [ Carga Inicial y Despacho del Controlador ]
+require_once DIR . '/Libraries/Core/Load.php';
